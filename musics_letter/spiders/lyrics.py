@@ -4,7 +4,7 @@ from musics_letter.items import MusicLyric
 class LyricsSpider(scrapy.Spider):
   name = 'lyrics'
   start_urls = ['https://www.letras.mus.br']
-  
+
   def parse(self, response):
     url_rap = 'https://www.letras.mus.br/top.html?genre=64&slug=hip-hop-rap&period=5&page=top#Sempre'
     url_sertanejo = 'https://www.letras.mus.br/top.html?genre=64&slug=sertanejo&period=5&page=top#Sempre'
@@ -26,11 +26,13 @@ class LyricsSpider(scrapy.Spider):
       title = response.css('h1::text').get()
       artist = response.css('h2 span::text').get()
       lyric = response.css('div.cnt-letra p::text').getall()
+      genrer = response.css('span:nth-of-type(2) span::text').get()
 
       music_lyric = MusicLyric(
-        title=title,
-        artist=artist,
-        lyric=lyric
+        title = title,
+        artist = artist,
+        lyric = lyric,
+        genrer = genrer
       )
 
       yield music_lyric

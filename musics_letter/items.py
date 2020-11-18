@@ -4,3 +4,4 @@ class MusicLyric(Item):
   title = Field()
   artist = Field()
   lyric = Field()
+  genrer = Field()
