@@ -5,6 +5,11 @@ class LyricsSpider(scrapy.Spider):
   name = 'lyrics'
   start_urls = ['https://www.letras.mus.br']
 
+  custom_settings = {
+    'FEED_FORMAT': 'csv',
+    'FEED_URI': 'data/lyrics.csv'
+  } 
+
   def parse(self, response):
     url_rap = 'https://www.letras.mus.br/top.html?genre=64&slug=hip-hop-rap&period=5&page=top#Sempre'
     url_sertanejo = 'https://www.letras.mus.br/top.html?genre=64&slug=sertanejo&period=5&page=top#Sempre'
